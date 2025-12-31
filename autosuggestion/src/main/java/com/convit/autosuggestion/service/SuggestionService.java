@@ -23,7 +23,7 @@ public class SuggestionService {
     public List<String> fetchSuggestions(SuggestionRequestParameters parameters) {
         log.info("suggestion request: {}", parameters);
         var query = NativeQueryBuilder.toSuggestQuery(parameters);
-        var searchHits = this.elasticsearchOperations.search(query, Object.class, Constants.Index.SUGGESTION);
+        var searchHits = elasticsearchOperations.search(query, Object.class, Constants.Index.SUGGESTION);
         return Optional.ofNullable(searchHits.getSuggest())
                 .map(s -> s.getSuggestion(Constants.Suggestion.SUGGEST_NAME))
                 .stream()
