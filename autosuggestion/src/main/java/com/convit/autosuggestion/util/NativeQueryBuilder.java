@@ -51,7 +51,10 @@ public class NativeQueryBuilder {
                 .should(shouldQueries));
         return NativeQuery.builder()
                 .withQuery(Query.of(builder -> builder.bool(boolQuery)))
-                .withAggregation(Constants.Business.OFFERINGS_AGGREGATE_NAME, ElasticsearchUtil.buildTermsAggregation(Constants.Business.OFFERINGS_RAW))
+                .withAggregation(
+                        Constants.Business.OFFERINGS_AGGREGATE_NAME,
+                        ElasticsearchUtil.buildTermsAggregation(Constants.Business.OFFERINGS_RAW)
+                )
                 .withPageable(PageRequest.of(parameters.page(), parameters.size()))
                 .withTrackTotalHits(true)
                 .build();

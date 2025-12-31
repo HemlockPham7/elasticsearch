@@ -19,6 +19,7 @@ public record QueryRule(Predicate<SearchRequestParameters> predicate,
         return Optional.of(parameters)
                 .filter(this.predicate())
                 .map(this.function());
+        // return predicate.test(parameters) ? functin.apply(parameters) : null
     }
 
 }
